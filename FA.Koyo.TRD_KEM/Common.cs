@@ -405,13 +405,13 @@ namespace FA.Koyo.TRD_KEM
         /// <summary>
         /// cmd调用STLink指令
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="commands"></param>
+        /// <param name="cmd">STLink.exe安装地址</param>
+        /// <param name="commands">STLink指令</param>
         /// <returns>返回值</returns>
         public static int CmdCommand(string cmd, string commands)
         {
             try
-            {   
+            {               
                 Process process = new Process();   //创建一个进程
                 process.StartInfo.FileName = "cmd.exe";    //调用cmd命令
                 process.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
