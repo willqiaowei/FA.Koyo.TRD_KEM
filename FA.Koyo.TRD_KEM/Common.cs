@@ -411,7 +411,7 @@ namespace FA.Koyo.TRD_KEM
         public static int CmdCommand(string cmd, string commands)
         {
             try
-            {               
+            {   
                 Process process = new Process();   //创建一个进程
                 process.StartInfo.FileName = "cmd.exe";    //调用cmd命令
                 process.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
