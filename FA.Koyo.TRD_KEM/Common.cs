@@ -402,32 +402,35 @@ namespace FA.Koyo.TRD_KEM
           
         }
 
+        /// <summary>
+        /// cmd调用STLink指令
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="commands"></param>
+        /// <returns>返回值</returns>
         public static int CmdCommand(string cmd, string commands)
         {
             try
-            {
-                //创建一个进程
-                Process process = new Process();
-                process.StartInfo.FileName = "cmd.exe";
-                process.StartInfo.UseShellExecute = false;//是否使用操作系统shell启动
-                process.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
-                process.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
-                process.StartInfo.RedirectStandardError = true;//重定向标准错误输出
-                process.StartInfo.CreateNoWindow = true;//不显示程序窗口
-                process.Start();//启动程序
+            {               
+                Process process = new Process();   //创建一个进程
+                process.StartInfo.FileName = "cmd.exe";    //调用cmd命令
+                process.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
+                process.StartInfo.RedirectStandardInput = true;    //接受来自调用程序的输入信息
+                process.StartInfo.RedirectStandardOutput = true;    //由调用程序获取输出信息
+                process.StartInfo.RedirectStandardError = true;    //重定向标准错误输出
+                process.StartInfo.CreateNoWindow = true;     //不显示程序窗口
+                process.Start();   //启动程序
 
                 string strCMD = cmd + commands;
-
-                //向cmd窗口发送输入信息
-                process.StandardInput.WriteLine(strCMD + "&exit");
+               
+                process.StandardInput.WriteLine(strCMD + "&exit");   //向cmd窗口发送输入信息
                 process.StandardInput.AutoFlush = true;
-                             
-                //等待程序执行完退出进程
-                process.WaitForExit();    
-                //获取进程的返回值
-                int returnCode = process.ExitCode;
-                //释放进程
-                process.Close();
+                                            
+                process.WaitForExit();    //等待程序执行完退出进程
+
+                int returnCode = process.ExitCode;  //获取进程的返回值
+                
+                process.Close();  //释放进程
 
                 return returnCode;             
             }
@@ -436,6 +439,7 @@ namespace FA.Koyo.TRD_KEM
                 throw ex;
             }
         }
+
         public static string SwitchReturnCode(int recode)
         {
             string returnCode = string.Empty;
