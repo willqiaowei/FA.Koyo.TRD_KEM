@@ -407,7 +407,7 @@ namespace FA.Koyo.TRD_KEM
         /// </summary>
         /// <param name="cmd">STLink.exe安装地址</param>
         /// <param name="commands">STLink指令</param>
-        /// <returns>返回值</returns>
+        /// <returns>进程返回值</returns>
         public static int CmdCommand(string cmd, string commands)
         {
             try
